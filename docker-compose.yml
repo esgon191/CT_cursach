@@ -10,6 +10,19 @@ services:
     networks:
       - appnet
 
+  tfserving:
+    image: tensorflow/serving:latest
+    # Монтируем каталог с моделью
+    volumes:
+      - ./models/saved_model:/models/saved_model:ro
+    # Параметры запуска: имя модели и путь
+    command: >
+      --model_name=saved_model
+      --model_base_path=/models/saved_model
+    # Сеть для внутреннего обращения
+    networks:
+      - appnet
+
 networks:
   appnet:
     driver: bridge
