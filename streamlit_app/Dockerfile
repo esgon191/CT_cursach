@@ -5,10 +5,14 @@ WORKDIR /app
 
 # Скопировать зависимости и установить их
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Скопировать весь код приложения
 COPY . .
+
+# Устанавливать зависимости, используя кэш pip, чтобы не загружать TensorFlow при каждой сборке
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --no-cache-dir -r requirements.txt
 
 # Открываем порт Streamlit
 EXPOSE 8501

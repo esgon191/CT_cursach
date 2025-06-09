@@ -1,7 +1,6 @@
+tensorflow
 streamlit
-streamlit-authenticator
 pandas
 requests
-tensorflow
 toml
 bcrypt
