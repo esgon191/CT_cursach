@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   tfserving:
     image: tensorflow/serving:latest
@@ -5,15 +7,15 @@ services:
     # Монтируем каталог с моделью
     volumes:
       - ./models/saved_model:/models/saved_model:ro
-    # REST на 8501, gRPC на 8500
+    # REST API (8501) и gRPC (8500)
     expose:
       - "8501"
       - "8500"
     command: >
-      --rest_api_port=8501
-      --grpc_port=8500
       --model_name=saved_model
       --model_base_path=/models/saved_model
+      --rest_api_port=8501
+      --port=8500
     networks:
       - appnet
 
