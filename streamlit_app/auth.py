@@ -33,7 +33,7 @@ def authenticate():
         )
 
         # Отображаем форму логина. Возвращаемые значения игнорируем, смотрим в st.session_state
-        authenticator.login("Login")
+        authenticator.login("main", fields={"Form name": "Login"})
 
         # Проверяем статус из session_state, установленные самим аутентификатором
         auth_status = st.session_state.get("authentication_status")
