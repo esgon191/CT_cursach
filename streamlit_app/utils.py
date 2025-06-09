@@ -1,3 +1,5 @@
+import pandas as pd
+
 def validate_csv(df: pd.DataFrame) -> bool:
     """
     Проверяет DataFrame на соответствие требуемому формату.
