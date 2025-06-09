@@ -31,12 +31,10 @@ def authenticate():
                 hashed = credentials[username]['password']
                 if bcrypt.checkpw(password.encode(), hashed.encode()):
                     st.session_state['authenticated'] = True
-                    st.session_state['username'] = username
-                    st.experimental_rerun()
                 else:
                     st.error('Неверное имя пользователя или пароль')
             else:
                 st.error('Неверное имя пользователя или пароль')
 
-        # Останавливаем дальнейшее выполнение
+        # Останавливаем дальнейшее выполнение до следующего взаимодействия
         st.stop()
