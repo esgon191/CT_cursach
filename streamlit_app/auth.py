@@ -35,7 +35,7 @@ def authenticate():
         )
 
         # Отображаем форму логина
-        name, auth_status, username = authenticator.login("Login", "main")
+        name, auth_status, username = authenticator.login("main", fields={"Form name": "Login"})
         
         if auth_status:
             st.session_state["authenticated"] = True
