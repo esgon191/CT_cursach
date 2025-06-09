@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  streamlit:
+    build: ./streamlit_app
+    volumes:
+      - ./streamlit_app/secrets.toml:/app/secrets.toml:ro
+    ports:
+      - "8501:8501"
+    environment:
+      - TF_SERVER_URL=http://tfserving:8501/v1/models/saved_model:predict
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge
