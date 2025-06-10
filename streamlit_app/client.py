@@ -3,6 +3,7 @@ import requests
 import streamlit as st
 import pandas as pd
 
+from utils import df_to_json
 
 def predict(df: pd.DataFrame):
     """
@@ -15,7 +16,7 @@ def predict(df: pd.DataFrame):
     )
 
     # Формируем полезную нагрузку для REST API
-    payload = {"instances": df.values.tolist()}
+    payload = {"inputs": df_to_json(df)}
 
     try:
         response = requests.post(tf_server_url, json=payload)
