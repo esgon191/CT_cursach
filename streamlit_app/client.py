@@ -2,6 +2,7 @@ import os
 import requests
 import streamlit as st
 import pandas as pd
+import numpy as np
 
 from utils import df_to_json
 
@@ -27,15 +28,11 @@ def predict(df: pd.DataFrame):
 
     # Разбираем ответ
     data = response.json()
-    predictions = data.get("predictions")
-    if predictions is None or len(predictions) == 0:
+
+    prediction = np.argmax(data['outputs'][0])
+    if prediction is None or len(prediction) == 0:
         st.error("Некорректный ответ от сервера модели.")
         st.error(data)
         return None
-
-    # Предполагаем, что модель возвращает список списков или список чисел
-    pred = predictions[0]
-    # Если предсказание — список, берем первый элемент
-    if isinstance(pred, (list, tuple)):
-        return pred[0]
-    return pred
+    
+    return prediction
