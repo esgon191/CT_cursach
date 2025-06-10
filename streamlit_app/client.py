@@ -28,6 +28,15 @@ def predict(df: pd.DataFrame):
 
     # Разбираем ответ
     data = response.json()
+    md = f"""
+        ##### Ответ модели
+        {data}
+        <br>
+        {data['outputs']}
+        <br>
+        {data['outputs'][0]}
+         """
+    st.markdown(body=md)
 
     try:
         prediction = np.argmax(data['outputs'][0])
