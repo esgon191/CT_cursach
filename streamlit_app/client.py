@@ -29,10 +29,14 @@ def predict(df: pd.DataFrame):
     # Разбираем ответ
     data = response.json()
 
-    prediction = np.argmax(data['outputs'][0])
-    if prediction is None or len(prediction) == 0:
+    try:
+        prediction = np.argmax(data['outputs'][0])
+
+    except Exception as e:
         st.error("Некорректный ответ от сервера модели.")
         st.error(data)
+
+        st.error(e)
         return None
     
     return prediction
