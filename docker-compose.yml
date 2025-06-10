@@ -29,7 +29,7 @@ services:
       - "8501:8501"
     environment:
       # URL для доступа к TF-Serving из Streamlit
-      - TF_SERVER_URL=http://tfserving:8503/v1/models/saved_model:predict
+      - TF_SERVER_URL=http://tfserving:8501/v1/models/saved_model:predict
     depends_on:
       - tfserving
     networks:

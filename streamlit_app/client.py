@@ -12,7 +12,7 @@ def predict(df: pd.DataFrame):
     # URL сервиса TF-Serving: можно задать через переменную окружения
     tf_server_url = os.getenv(
         "TF_SERVER_URL",
-        "http://tfserving:8503/v1/models/saved_model:predict"
+        "http://tfserving:8501/v1/models/saved_model:predict"
     )
 
     # Формируем полезную нагрузку для REST API
