@@ -30,6 +30,7 @@ def predict(df: pd.DataFrame):
     predictions = data.get("predictions")
     if predictions is None or len(predictions) == 0:
         st.error("Некорректный ответ от сервера модели.")
+        st.error(data)
         return None
 
     # Предполагаем, что модель возвращает список списков или список чисел
