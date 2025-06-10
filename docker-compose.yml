@@ -9,8 +9,8 @@ services:
       - ./models/saved_model:/models/saved_model:ro
     # REST API (8501) и gRPC (8500)
     expose:
-      - "8503"
-      - "8502"
+      - "8501"
+      - "8500"
     command: >
       --model_name=saved_model
       --model_base_path=/models/saved_model
